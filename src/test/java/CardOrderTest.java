@@ -70,4 +70,15 @@ public class CardOrderTest {
         Assertions.assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
                 actual.trim());
     }
+
+    @Test
+    public void shouldCheckbox() {
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Смирнов Алексей");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79004562313");
+        driver.findElement(By.cssSelector("button")).click();
+        String actual = driver.findElement(By.className("checkbox__text")).getText();
+        Assertions.assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных " +
+                        "данных и разрешаю сделать запрос в бюро кредитных историй" ,
+                actual.trim());
+    }
 }
